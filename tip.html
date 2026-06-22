@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free Tip Calculator. Calculate tip amount, total bill, and split per person. Perfect for dining out with friends.">
+<title>Tip Calculator - QuickTools</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">QuickTools</a>
+  <a href="bmi.html">BMI</a>
+  <a href="age.html">Age</a>
+  <a href="currency.html">Currency</a>
+  <a href="tip.html">Tip</a>
+  <a href="about.html">About</a>
+</nav>
+
+<div class="container">
+  <div class="card">
+    <h1>Tip Calculator</h1>
+    <div class="input-group">
+      <label>Bill Amount ($)</label>
+      <input type="number" id="tipBill" placeholder="e.g. 45.50" min="0" step="0.01">
+    </div>
+    <div class="row">
+      <div class="input-group"><label>Tip (%)</label>
+        <input type="number" id="tipPercent" value="15" min="0" max="100">
+      </div>
+      <div class="input-group"><label>Split (people)</label>
+        <input type="number" id="tipPeople" value="1" min="1" max="100">
+      </div>
+    </div>
+    <button class="btn" onclick="calcTip()">Calculate</button>
+    <div class="result" id="tipResult">Enter your bill details</div>
+  </div>
+  <p class="back-link"><a href="index.html">&larr; Back to all tools</a></p>
+</div>
+
+<footer>
+  <p>QuickTools &copy; 2026 · <a href="privacy.html">Privacy Policy</a></p>
+</footer>
+
+<script>
+function calcTip(){
+  var b=parseFloat(document.getElementById('tipBill').value),p=parseFloat(document.getElementById('tipPercent').value),pp=parseInt(document.getElementById('tipPeople').value);
+  if(!b||isNaN(p)||!pp||b<0||pp<1){document.getElementById('tipResult').innerHTML='Please enter valid values';return;}
+  var tip=b*(p/100),total=b+tip,each=total/pp;
+  document.getElementById('tipResult').innerHTML='Tip: <strong>$'+tip.toFixed(2)+'</strong> | Total: <strong>$'+total.toFixed(2)+'</strong> | Each: <strong>$'+each.toFixed(2)+'</strong>';
+}
+</script>
+</body>
+</html>

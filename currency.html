@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free Currency Converter. Convert between USD, EUR, GBP, JPY, AUD, CNY and more. Quick and easy exchange rate calculator.">
+<title>Currency Converter - QuickTools</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">QuickTools</a>
+  <a href="bmi.html">BMI</a>
+  <a href="age.html">Age</a>
+  <a href="currency.html">Currency</a>
+  <a href="tip.html">Tip</a>
+  <a href="about.html">About</a>
+</nav>
+
+<div class="container">
+  <div class="card">
+    <h1>Currency Converter</h1>
+    <div class="input-group">
+      <label>Amount</label>
+      <input type="number" id="fxAmount" placeholder="e.g. 100" min="0" step="0.01">
+    </div>
+    <div class="row">
+      <div class="input-group"><label>From</label>
+        <select id="fxFrom">
+          <option value="USD">USD</option><option value="EUR">EUR</option><option value="GBP">GBP</option>
+          <option value="JPY">JPY</option><option value="AUD">AUD</option><option value="CNY">CNY</option>
+        </select>
+      </div>
+      <div class="input-group"><label>To</label>
+        <select id="fxTo">
+          <option value="EUR">EUR</option><option value="USD">USD</option><option value="GBP">GBP</option>
+          <option value="JPY">JPY</option><option value="AUD">AUD</option><option value="CNY">CNY</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn" onclick="calcFX()">Convert</button>
+    <div class="result" id="fxResult">Enter an amount and select currencies</div>
+    <p class="note">Rates updated periodically. For live rates, check your bank or a currency exchange service.</p>
+  </div>
+  <p class="back-link"><a href="index.html">&larr; Back to all tools</a></p>
+</div>
+
+<footer>
+  <p>QuickTools &copy; 2026 · <a href="privacy.html">Privacy Policy</a></p>
+</footer>
+
+<script>
+function calcFX(){
+  var a=parseFloat(document.getElementById('fxAmount').value);
+  if(!a||a<0){document.getElementById('fxResult').innerHTML='Please enter a valid amount';return;}
+  var rates={USD:1,EUR:0.92,GBP:0.79,JPY:155,AUD:1.53,CNY:7.25};
+  var f=document.getElementById('fxFrom').value,t=document.getElementById('fxTo').value;
+  var r=a/rates[f]*rates[t];
+  document.getElementById('fxResult').innerHTML=a.toLocaleString()+' '+f+' &asymp; <strong>'+r.toFixed(2)+'</strong> '+t;
+}
+</script>
+</body>
+</html>

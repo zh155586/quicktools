@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free Age Calculator. Find out your exact age in years, months, and days. Calculate how many days you've been alive.">
+<title>Age Calculator - QuickTools</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">QuickTools</a>
+  <a href="bmi.html">BMI</a>
+  <a href="age.html">Age</a>
+  <a href="currency.html">Currency</a>
+  <a href="tip.html">Tip</a>
+  <a href="about.html">About</a>
+</nav>
+
+<div class="container">
+  <div class="card">
+    <h1>Age Calculator</h1>
+    <div class="input-group">
+      <label>Your Date of Birth</label>
+      <input type="date" id="ageBirth">
+    </div>
+    <button class="btn" onclick="calcAge()">Calculate My Age</button>
+    <div class="result" id="ageResult">Select your date of birth above</div>
+  </div>
+  <p class="back-link"><a href="index.html">&larr; Back to all tools</a></p>
+</div>
+
+<footer>
+  <p>QuickTools &copy; 2026 · <a href="privacy.html">Privacy Policy</a></p>
+</footer>
+
+<script>
+function calcAge(){
+  var b=document.getElementById('ageBirth').value;
+  if(!b){document.getElementById('ageResult').innerHTML='Please select your date of birth';return;}
+  var bd=new Date(b),now=new Date();
+  var y=now.getFullYear()-bd.getFullYear(),m=now.getMonth()-bd.getMonth(),d=now.getDate()-bd.getDate();
+  if(d<0){m--;d+=new Date(now.getFullYear(),now.getMonth(),0).getDate();}
+  if(m<0){y--;m+=12;}
+  var td=Math.floor((now-bd)/86400000);
+  document.getElementById('ageResult').innerHTML='<strong>'+y+'</strong> years, <strong>'+m+'</strong> months, <strong>'+d+'</strong> days<br><small>('+td.toLocaleString()+' days total)</small>';
+}
+</script>
+</body>
+</html>
